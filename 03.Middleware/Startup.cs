@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using Middleware;
 
 namespace _02.Middleware
 {
@@ -23,9 +24,9 @@ namespace _02.Middleware
             // установка обработчика статических файлов
             app.UseStaticFiles();
 
+            app.UseMiddleware<CustomMiddleware>();
             // установка аутентификации пользователя на основе куки
             app.UseAuthentication();
-
             // установка логики обработки запроса
             app.Run(async (context) =>
             {
